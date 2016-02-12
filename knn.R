@@ -1,7 +1,8 @@
 require("kknn")
 #Train KNN
-model<-kknn(target~., train=trainNumeric[,2:114], test=testNumeric[,2:113], k=17,  kernel="rectangular")
-
+traintime<-system.time({
+model<-kknn(target~., train=trainNumeric[,2:114], test=testNumeric[,2:113], k=53,  kernel="rectangular")
+})
 
 
 #produce csv
