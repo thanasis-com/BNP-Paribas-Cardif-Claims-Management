@@ -1,7 +1,7 @@
 require("kknn")
 #Train KNN
 traintime<-system.time({
-model<-kknn(target~., train=trainNumeric[,2:114], test=testNumeric[,2:113], k=53,  kernel="rectangular")
+model<-kknn(target~., train=trainNumeric[,2:114], test=testNumeric[,2:113], k=151,  kernel="optimal")
 })
 
 
