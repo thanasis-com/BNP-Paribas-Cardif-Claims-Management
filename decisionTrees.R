@@ -5,13 +5,14 @@ cl <- makeCluster(8)
 registerDoSNOW(cl)
 
 # define training control
-train_control <- trainControl(method="cv", number=5, classProbs = TRUE)
+train_control <- trainControl(method="none", classProbs = TRUE)
 
 #train the model
 time<-system.time({
   train[,2][train[,2]==1] <- "yes"
   train[,2][train[,2]==0] <- "no"
-  model <- train(x=train[,3:129], y=as.factor(train[,2]), trControl=train_control, method="rpart")
+  set.seed(123)
+  model <- train(x=train[,3:129], y=as.factor(train[,2]), trControl=train_control, method="ranger", tuneGrid = data.frame(mtry=50))
   
 })
 
@@ -19,6 +20,9 @@ stopCluster(cl)
 
 #model summary
 print(model)
+
+plot(model$finalModel)
+text(model$finalModel)
 
 #make predictions
 results <- predict(model, test[,2:128], type="prob")
