@@ -12,7 +12,7 @@ time<-system.time({
   train[,2][train[,2]==1] <- "yes"
   train[,2][train[,2]==0] <- "no"
   set.seed(123)
-  model <- train(x=train[,3:129], y=as.factor(train[,2]), trControl=train_control, method="ranger", tuneGrid = data.frame(mtry=50))
+  model <- train(x=train[,3:114], y=as.factor(train[,2]), trControl=train_control, method="ranger", tuneGrid = data.frame(mtry=50))
   
 })
 
@@ -25,7 +25,7 @@ plot(model$finalModel)
 text(model$finalModel)
 
 #make predictions
-results <- predict(model, test[,2:128], type="prob")
+results <- predict(model, test[,2:113], type="prob")
 
 #produce csv
 submission<-cbind(test$ID,results$yes)

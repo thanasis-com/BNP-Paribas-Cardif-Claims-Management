@@ -1,5 +1,7 @@
 #import data
-#getting rid of V22 as it has different levels in train and test set
+#getting rid of v22, v56, v71, v113 as they have different levels in train and test set
+#they also have too many levels
+#afterwards, the numeric missing values are made equal to the column mean
 
 test = read.csv("test.csv", header = TRUE)
 train = read.csv("train.csv", header = TRUE)
@@ -14,8 +16,8 @@ test$v113<-NULL
 train$v113<-NULL
 
 #have to remove it to use the randomForest package, because it has more than 53 levels
-test$v125<-NULL
-train$v125<-NULL
+#test$v125<-NULL
+#train$v125<-NULL
 
 
 #####Dealing with missing values in the test dataset

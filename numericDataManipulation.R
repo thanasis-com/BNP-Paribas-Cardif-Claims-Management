@@ -1,6 +1,11 @@
 require("dplyr")
 require("plyr")
 
+#import data
+test = read.csv("test.csv", header = TRUE)
+train = read.csv("train.csv", header = TRUE)
+
+
 #explore missing values
 sapply(train,function(x) sum(is.na(x)))
 
