@@ -9,10 +9,10 @@ train_control <- trainControl(method="none", classProbs = TRUE)
 
 #train the model
 time<-system.time({
-  train[,2][train[,2]==1] <- "yes"
-  train[,2][train[,2]==0] <- "no"
+  trainNumeric[,2][trainNumeric[,2]==1] <- "yes"
+  trainNumeric[,2][trainNumeric[,2]==0] <- "no"
   set.seed(123)
-  model <- train(x=train[,3:114], y=as.factor(train[,2]), trControl=train_control, method="ranger", tuneGrid = data.frame(mtry=50))
+  model <- train(x=trainNumeric[,3:114], y=as.factor(trainNumeric[,2]), trControl=train_control, method="ranger")
   
 })
 

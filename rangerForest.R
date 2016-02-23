@@ -1,10 +1,10 @@
 #random forest with ranger package (fast)
 library(ranger)
 
-model<-ranger(as.factor(target)~., data=train[,2:129], num.trees = 1000, probability = TRUE,  write.forest = TRUE)
+model<-ranger(as.factor(target)~., data=train[,2:125], num.trees = 500, probability = TRUE,  write.forest = TRUE)
 
 #make predictions
-results <- predict(model, test[,2:128], type="prob")
+results <- predict(model, test[,2:124], type="prob")
 
 #produce csv
 submission<-cbind(test$ID,results$predictions[,2])
